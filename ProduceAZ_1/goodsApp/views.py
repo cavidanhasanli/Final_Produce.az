@@ -9,6 +9,7 @@ from goodsApp.forms import *
 from django.db.models import Q
 from .models import *
 from django.http import HttpResponse, JsonResponse
+import calendar
 
 
 def category_filter(name):
@@ -21,16 +22,19 @@ def category_filter(name):
             result.append(i)
     return result
 
+
 class AboutView(TemplateView):
     template_name = 'about.html'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["content"] = AboutPage.objects.last()
         return context
 
+
 class PartnerView(ListView):
     model = Partner
-    context_object_name = 'partners' 
+    context_object_name = 'partners'
     template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
@@ -38,19 +42,25 @@ class PartnerView(ListView):
         context["last_products"] = Products.objects.order_by('-created_at')[0:8]
         context["blogs"] = Post.objects.order_by('?')[0:3]
         context["products"] = Products.objects.order_by('?')[0:3]
-        context['backgrounds'] = HeaderModel.objects.all().first().backgroundimage_set.all()
-        context['header'] = HeaderModel.objects.all()[0]
+        try:
+            context['backgrounds'] = HeaderModel.objects.all().first().backgroundimage_set.all()
+            context['header'] = HeaderModel.objects.all()[0]
+        except:
+            pass
+
         context['randoms'] = Products.objects.all()[0:7]
         context['events'] = Event.objects.all()[0:9]
         print(context)
         return context
+
 
 def get_blog(request):
     post_list = Post.objects.all()
 
     if request.method == 'POST':
         search = request.POST.get('search')
-        post_list = Post.objects.filter(Q(title__icontains=search) | Q(text__icontains=search) | Q(description__icontains=search))
+        post_list = Post.objects.filter(
+            Q(title__icontains=search) | Q(text__icontains=search) | Q(description__icontains=search))
 
     paginator = Paginator(post_list, 2)
 
@@ -62,6 +72,7 @@ def get_blog(request):
     }
     return render(request, 'blog.html', context)
 
+
 def get_blog_detail(request, id):
     post = Post.objects.get(id=id)
 
@@ -69,6 +80,7 @@ def get_blog_detail(request, id):
         'post': post
     }
     return render(request, 'blog-detail.html', context)
+
 
 # ----------------------------------------------------------------------------------------------------------
 
@@ -86,6 +98,7 @@ def sorting(request, sort_by):
         return JsonResponse(product_list, safe=False)
 
     # -----------------------------------------------------------------------------------------------------------------
+
 
 # **********************************************Products***************************************************
 def get_products(request):
@@ -128,6 +141,8 @@ def get_products(request):
     }
 
     return render(request, 'product.html', context)
+
+
 # ---------------------------------------------------------------Categories----------------------------------------
 def get_category(request, cat_id):
     categories = Category.objects.all()
@@ -160,31 +175,32 @@ def get_category(request, cat_id):
     }
 
     return render(request, 'product.html', context)
+
+
 # ---------------------------------------------------------Detail Of Product ---------------------------------------
 def get_detail(request, prod_id):
     product = Products.objects.get(id=prod_id)
-    related_products = Products.objects.filter(category=product.category)
     context = {
         'product': product,
-        'related_products': related_products
     }
     return render(request, 'product-detail.html', context)
+
+
 # ------------------------------------------------------------------------------------------------------------------
 
 def create_event(request):
     event_list = Event.objects.all()
 
-
-    if request.method == 'POST':
-        search = request.POST.get('search')
+    if 'search'  in  request.GET:
+        search = request.GET.get('search')
         event_list = Event.objects.filter(
             Q(title__icontains=search) | Q(text__icontains=search) | Q(description__icontains=search))
 
     paginator = Paginator(event_list, 2)
 
-    first_count = Event.objects.filter(test_date__year=2020, test_date__month=1).count()
-    second_count = Event.objects.filter(test_date__year=2019, test_date__month=11).count()
-    third_count = Event.objects.filter(test_date__year=2019, test_date__month=12).count()
+    first_count = Event.objects.filter(end_date__month=1).count()
+    second_count = Event.objects.filter(end_date__month=12).count()
+    third_count = Event.objects.filter(end_date__month=11).count()
 
     page = request.GET.get('page')
     events = paginator.get_page(page)
@@ -194,34 +210,37 @@ def create_event(request):
         'first_count': first_count,
         'second_count': second_count,
         'third_count': third_count,
-        'categories' : category_filter('event')
+        'categories': category_filter('event')
     }
-    return render(request, 'event.html', context)
+    return render(request, 'event2.html', context)
+
 
 def get_event_detail(request, id):
     event = Event.objects.get(id=id)
 
-
-
-    related_products = Event.objects.filter(category=event.category).exclude(id=id)
     context = {
         'event': event,
-        'category' : category_filter('event'),
-        'related_products': related_products
+        'category': category_filter('event'),
     }
     return render(request, 'event-detail.html', context)
 
-def get_archieve(request, year, month):
-    event_list = Event.objects.filter(test_date__year=year, test_date__month=month)
 
-    if request.method == 'POST':
-        search = request.POST.get('search')
+def get_event_archieve(request, month):
+    months = [
+        'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+        'September', 'October', 'November', 'December'
+    ]
+    index = months.index(month) + 1
+    event_list = Event.objects.filter(end_date__month=index)
+
+    if 'search' in  request.GET:
+        search = request.GET.get('search')
         event_list = Event.objects.filter(
             Q(title__icontains=search) | Q(text__icontains=search) | Q(description__icontains=search))
 
-    first_count = Event.objects.filter(test_date__year=2020, test_date__month=1).count()
-    second_count = Event.objects.filter(test_date__year=2019, test_date__month=11).count()
-    third_count = Event.objects.filter(test_date__year=2019, test_date__month=12).count()
+    first_count = Event.objects.filter(end_date__month=1).count()
+    second_count = Event.objects.filter(end_date__month=12).count()
+    third_count = Event.objects.filter(end_date__month=11).count()
 
     paginator = Paginator(event_list, 2)
 
@@ -233,15 +252,18 @@ def get_archieve(request, year, month):
         'first_count': first_count,
         'second_count': second_count,
         'third_count': third_count,
+        'categories': category_filter('event'),
+
     }
-    return render(request, 'event.html', context)
+    return render(request, 'event2.html', context)
 
-def get_category_event(request, cat_id):
+
+def get_category_event(request, slug):
     categories = Category.objects.all()
-    event_list = Event.objects.filter(category__id=cat_id)
+    event_list = Event.objects.filter(category__slug=slug)
 
-    if request.method == 'POST':  # for searching field in categories
-        query = request.POST.get('q')
+    if 'search' in  request.GET:  # for searching field in categories
+        query = request.GET.get('search')
         event_list = Event.objects.filter(
             Q(title__icontains=query) | Q(category__name__icontains=query) | Q(description__contains=query) | Q(
                 created_at__icontains=query))
@@ -258,33 +280,38 @@ def get_category_event(request, cat_id):
         end = len_product
     # paginator = Paginator(event_list, 2)
 
-    related_products = Products.objects.filter(category=event_list[0].category)[:3]
+    first_count = Event.objects.filter(end_date__month=1).count()
+    second_count = Event.objects.filter(end_date__month=12).count()
+    third_count = Event.objects.filter(end_date__month=11).count()
 
     context = {
 
         'categories': category_filter('event'),
         'events': products,
-        'related_events' : related_products,
+        'first_count': first_count,
+        'second_count': second_count,
+        'third_count': third_count,
 
 
     }
 
-    return render(request, 'event.html', context)
+    return render(request, 'event2.html', context)
+
 
 # blogs
 def get_blog(request):
     post_list = Post.objects.all()
 
-    if request.method == 'POST':
-        search = request.POST.get('search')
-        post_list = Post.objects.filter(Q(title__icontains=search) | Q(text__icontains=search) | Q(description__icontains=search))
+    if 'search' in request.GET:
+        search = request.GET.get('search')
+        post_list = Post.objects.filter(
+            Q(title__icontains=search) | Q(text__icontains=search) | Q(description__icontains=search))
 
     paginator = Paginator(post_list, 2)
 
-    first_count = Post.objects.filter(test_date__year = 2020, test_date__month = 1).count()
-    second_count = Post.objects.filter(test_date__year = 2019, test_date__month = 11).count()
-    third_count = Post.objects.filter(test_date__year = 2019, test_date__month = 12).count()
-
+    first_count = Post.objects.filter(test_date__year=2020, test_date__month=1).count()
+    second_count = Post.objects.filter(test_date__year=2019, test_date__month=11).count()
+    third_count = Post.objects.filter(test_date__year=2019, test_date__month=12).count()
 
     page = request.GET.get('page')
     posts = paginator.get_page(page)
@@ -294,7 +321,7 @@ def get_blog(request):
         'first_count': first_count,
         'second_count': second_count,
         'third_count': third_count,
-        'category' : category_filter('post')
+        'category': category_filter('post')
     }
     return render(request, 'blog.html', context)
 
@@ -308,17 +335,22 @@ def get_blog_detail(request, id):
     return render(request, 'blog-detail.html', context)
 
 
-def get_archieve(request, year, month):
-    post_list = Post.objects.filter(test_date__year=year, test_date__month=month)
+def get_archieve(request, month):
+    months = [
+        'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+        'September', 'October', 'November', 'December'
+    ]
+    index = months.index(month) + 1
+    post_list = Post.objects.filter(test_date__month=index)
 
     if request.method == 'POST':
         search = request.POST.get('search')
         post_list = Post.objects.filter(
             Q(title__icontains=search) | Q(text__icontains=search) | Q(description__icontains=search))
 
-    first_count = Post.objects.filter(test_date__year=2020, test_date__month=1).count()
-    second_count = Post.objects.filter(test_date__year=2019, test_date__month=11).count()
-    third_count = Post.objects.filter(test_date__year=2019, test_date__month=12).count()
+    first_count = Post.objects.filter(test_date__month=1).count()
+    second_count = Post.objects.filter(test_date__month=12).count()
+    third_count = Post.objects.filter(test_date__month=11).count()
 
     paginator = Paginator(post_list, 2)
 
@@ -326,6 +358,7 @@ def get_archieve(request, year, month):
     posts = paginator.get_page(page)
 
     context = {
+        'category': category_filter('post'),
         'posts': posts,
         'first_count': first_count,
         'second_count': second_count,
@@ -335,7 +368,7 @@ def get_archieve(request, year, month):
 
 
 def get_category_blog(request, cat_id):
-    post_list = Post.objects.filter(category__id=cat_id)
+    post_list = Post.objects.filter(category__slug=cat_id)
 
     if request.method == 'POST':  # for searching field in categories
         query = request.POST.get('q')
@@ -347,19 +380,20 @@ def get_category_blog(request, cat_id):
     page = request.GET.get('page')
     posts = paginator.get_page(page)
 
-    try:
-        related_products = Products.objects.filter(category=post_list[0].category)[:3]
-    except:
-        related_products = Products.objects.filter(category=post_list[0].category)
+
+    first_count = Post.objects.filter(test_date__month=1).count()
+    second_count = Post.objects.filter(test_date__month=12).count()
+    third_count = Post.objects.filter(test_date__month=11).count()
 
     context = {
 
-            'category': category_filter('post'),
-            'posts': posts,
-            'related_products' : related_products,
+        'category': category_filter('post'),
+        'posts': posts,
+        'first_count': first_count,
+        'second_count': second_count,
+        'third_count': third_count,
 
-
-        }
+    }
 
     return render(request, 'blog.html', context)
 
@@ -375,6 +409,5 @@ def contact(request):
             return redirect('goodsApp:index')
         else:
             messages.error(request, "Form duzgun deyil {}".format(form.errors.as_text))
-
 
     return render(request, "contact.html", context)

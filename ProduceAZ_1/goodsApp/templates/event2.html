@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-md-8 col-lg-9 p-b-75">
                     <div class="p-r-50 p-r-0-lg">
-                        {% for post in posts %}
+                        {% for post in events %}
                             <div class="item-blog p-b-80">
                                 <a href="{% url 'goodsApp:get_blog_detail' post.id %}"
                                    class="item-blog-img pos-relative dis-block hov-img-zoom">
@@ -44,16 +44,13 @@
 										<span class="m-l-3 m-r-6">|</span>
 									</span>
 
-                                        <span>
-										8 Comments
-									</span>
                                     </div>
 
                                     <p class="p-b-12">
                                         {{ post.description }}
                                     </p>
 
-                                    <a href="{% url 'goodsApp:get_blog_detail' post.id %}" class="s-text20">
+                                    <a href="{% url 'goodsApp:get_event_detail' post.id %}" class="s-text20">
                                         Continue Reading
                                         <i class="fa fa-long-arrow-right m-l-8" aria-hidden="true"></i>
                                     </a>
@@ -109,13 +106,13 @@
 
                         <ul>
                             <li class="p-t-6 p-b-8 bo6">
-                                <a href="{% url 'goodsApp:get_blog' %}" class="s-text13 p-t-5 p-b-5">
+                                <a href="{% url 'goodsApp:create_event' %}" class="s-text13 p-t-5 p-b-5">
                                     All
                                 </a>
                             </li>
-                            {% for field in category %}
+                            {% for field in categories %}
                                 <li class="p-t-6 p-b-8 bo7">
-                                    <a href="{% url 'goodsApp:get_category_blog' field.slug %}"
+                                    <a href="{% url 'goodsApp:get_category_event' field.slug %}"
                                        class="s-text13 p-t-5 p-b-5">
                                         {{ field.name }}
                                     </a>
@@ -132,7 +129,7 @@
 
                         <ul>
                             <li class="flex-sb-m">
-                                <a href="{% url 'goodsApp:get_archieve' 'January' %}" class="s-text13 p-t-5 p-b-5">
+                                <a href="{% url 'goodsApp:get_event_archieve' 'January' %}" class="s-text13 p-t-5 p-b-5">
                                     January 2020
                                 </a>
 
@@ -142,7 +139,7 @@
                             </li>
 
                             <li class="flex-sb-m">
-                                <a href="{% url 'goodsApp:get_archieve' 'December' %}" class="s-text13 p-t-5 p-b-5">
+                                <a href="{% url 'goodsApp:get_event_archieve' 'December' %}" class="s-text13 p-t-5 p-b-5">
                                     December 2019
                                 </a>
 
@@ -152,7 +149,7 @@
                             </li>
 
                             <li class="flex-sb-m">
-                                <a href="{% url 'goodsApp:get_archieve' 'November' %}" class="s-text13 p-t-5 p-b-5">
+                                <a href="{% url 'goodsApp:get_event_archieve' 'November' %}" class="s-text13 p-t-5 p-b-5">
                                     November 2019
                                 </a>
 
