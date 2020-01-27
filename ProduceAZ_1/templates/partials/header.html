@@ -1,0 +1,44 @@
+{% load static %}
+{% load base_filters %}
+{% get_nav_links as links %}
+<header class="header1">
+		<!-- Header desktop -->
+		<div class="container-menu-header">
+
+			<div class="wrap_header">
+				<!-- Logo -->
+				<a href="{% url 'goodsApp:index' %}" class="logo">
+					<img src="{% static 'images/New Project.png' %}" alt="IMG-LOGO">
+				</a>
+
+				<!-- Menu -->
+				<div class="wrap_menu">
+					<nav class="menu">
+						<ul class="main_menu">
+						{% for link in links %}
+							<li>
+								<a href="{{link.url}}">{{link.title}}</a>
+							</li>
+							{% endfor %}
+
+							{% comment %} <li>
+								<a href="blog.html">Blogs</a>
+							</li>
+
+							<li>
+								<a href="cart.html">Events</a>
+							</li>
+
+							<li>
+								<a href="{% url 'goods_app:about' %}">About</a>
+							</li>
+
+							<li>
+								<a href="contact.html">Contact</a>
+							</li> {% endcomment %}
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
