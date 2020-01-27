@@ -50,7 +50,7 @@
             arrows: true,
             appendArrows: $('.wrap-slick1'),
             prevArrow:'<button class="arrow-slick1 prev-slick1"><i class="fa  fa-angle-left" aria-hidden="true"></i></button>',
-            nextArrow:'<button class="arrow-slick1 next-slick1"><i class="fa  fa-angle-right" aria-hidden="true"></i></button>',  
+            nextArrow:'<button class="arrow-slick1 next-slick1"><i class="fa  fa-angle-right" aria-hidden="true"></i></button>',
         });
 
         $('.slick1').on('afterChange', function(event, slick, currentSlide){ 
@@ -91,9 +91,7 @@
             autoplay: false,
             autoplaySpeed: 6000,
             arrows: true,
-            appendArrows: $('.wrap-slick2'),
-            prevArrow:'<button class="arrow-slick2 prev-slick2"><i class="fa  fa-angle-left" aria-hidden="true"></i></button>',
-            nextArrow:'<button class="arrow-slick2 next-slick2"><i class="fa  fa-angle-right" aria-hidden="true"></i></button>',  
+            // appendArrows: $('.wrap-slick2'),
             responsive: [
                 {
                   breakpoint: 1200,

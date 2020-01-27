@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1899dc4a-de90-4a1e-a2c6-131d24b9427e" name="Default Changelist" comment="" />
+    <list default="true" id="1899dc4a-de90-4a1e-a2c6-131d24b9427e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goodsApp/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/goodsApp/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goodsApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/goodsApp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/slick-custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/slick-custom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/slick-custom.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/slick-custom.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/partials/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/footer.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,7 +39,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1WkBSQzCgbNMXnHTgzM0NocZ1EU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -39,10 +51,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Django server.ProduceAZ_1">
     <configuration name="ProduceAZ_1" type="Python.DjangoServer" factoryName="Django server">
       <module name="ProduceAZ_1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -51,7 +65,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="produceAz.settings" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="$USER_HOME$/Produce.az/.venv/bin/python" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -67,6 +81,33 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Unnamed" type="Python.DjangoServer" factoryName="Django server" nameIsGenerated="true">
+      <module name="ProduceAZ_1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/Produce.az/.venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django server.Unnamed" />
+      <item itemvalue="Django server.ProduceAZ_1" />
+    </list>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -97,6 +138,8 @@
       <workItem from="1579945239422" duration="17098000" />
       <workItem from="1580029835914" duration="6692000" />
       <workItem from="1580108151876" duration="3864000" />
+      <workItem from="1580119824952" duration="1862000" />
+      <workItem from="1580122039965" duration="4325000" />
     </task>
     <servers />
   </component>
@@ -104,6 +147,14 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="451" y="27" width="1029" height="1053" key="#ProduceAZ_1" timestamp="1580119915573">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="451" y="27" width="1029" height="1053" key="#ProduceAZ_1/0.27.1920.1053@0.27.1920.1053" timestamp="1580119915573" />
+    <state x="418" y="190" width="1336" height="802" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580122091640">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="418" y="190" width="1336" height="802" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580122091640" />
     <state x="643" y="200" width="624" height="704" key="FileChooserDialogImpl" timestamp="1579944946843">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -124,13 +175,21 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1848" height="249" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1580109380724" />
-    <state x="426" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1580108153805">
+    <state x="187" y="27" width="1536" height="1053" key="SettingsEditor" timestamp="1580122017015">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="426" y="302" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580108153805" />
-    <state x="430" y="27" width="1055" height="1049" key="search.everywhere.popup" timestamp="1580111458317">
+    <state x="187" y="27" width="1536" height="1053" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1580122017015" />
+    <state x="426" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1580122040912">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="430" y="27" width="1055" height="1049" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1580111458317" />
+    <state x="426" y="302" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580122040912" />
+    <state x="623" y="57" width="663" height="990" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1580122769919">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="623" y="57" width="663" height="990" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1580122769919" />
+    <state x="430" y="27" width="1055" height="1049" key="search.everywhere.popup" timestamp="1580123370088">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="430" y="27" width="1055" height="1049" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1580123370088" />
   </component>
 </project>

@@ -41,7 +41,7 @@ class PartnerView(ListView):
         context['backgrounds'] = HeaderModel.objects.all().first().backgroundimage_set.all()
         context['header'] = HeaderModel.objects.all()[0]
         context['randoms'] = Products.objects.all()[0:7]
-        context['events'] = Event.objects.all()[0:9]
+        context['events'] = Event.objects.all()[0:5]
         print(context)
         return context
 
