@@ -81,79 +81,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 col-lg-3 p-b-80">
-                    <div class="rightbar">
-                        <!-- Search -->
 
-                        <form method="POST" action="{% url "goodsApp:create_event" %}">
-                            {% csrf_token %}
-                            <div class="pos-relative bo11 of-hidden">
-                                <input class="s-text7 size16 p-l-23 p-r-50" type="text" name="search"
-                                       placeholder="Search">
-
-                                <button type="submit" class="flex-c-m size5 ab-r-m color1 color0-hov trans-0-4">
-                                    <i class="fs-13 fa fa-search" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </form>
-
-                        <!-- Categories -->
-                        <h4 class="m-text23 p-t-56 p-b-34">
-                            Categories
-                        </h4>
-
-                        <ul>
-                            <li class="p-t-6 p-b-8 bo6">
-                                <a href="{% url 'goodsApp:create_event' %}" class="s-text13 p-t-5 p-b-5">
-                                    All
-                                </a>
-                            </li>
-                            {% for field in category %}
-                                <li class="p-t-6 p-b-8 bo7">
-                                    <a href="{% url 'goodsApp:get_category_event' field.id %}" class="s-text13 p-t-5 p-b-5">
-                                        {{ field.name }}
-                                    </a>
-                                </li>
-
-                            {% endfor %}
-
-
-                        </ul>
-
-                        <!-- Featured Products -->
-                        <h4 class="m-text23 p-t-65 p-b-34">
-                            Featured Products
-                        </h4>
-
-                        <ul class="bgwhite">
-                            {% for field in related_products %}
-                                <li class="flex-w p-b-20">
-                                    <a href="product-detail.html"
-                                       class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">
-                                        <img src="{{field.image.url}}" alt="IMG-PRODUCT">
-                                    </a>
-
-                                    <div class="w-size23 p-t-5">
-                                        <a href="{% url 'goodsApp:get_event_detail' field.id %}" class="s-text20">
-                                            {{field.title}}
-                                        </a>
-
-                                        <span class="dis-block s-text17 p-t-6">
-										{{field.description}}
-									</span>
-                                    </div>
-                                </li>
-
-                            {% endfor %}
-
-
-                        </ul>
-
-
-                        <!-- Tags -->
-
-                    </div>
-                </div>
             </div>
         </div>
         </div>
